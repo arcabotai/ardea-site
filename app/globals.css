@@ -206,7 +206,7 @@ h1 {
 .command-card__title { display: flex; align-items: center; gap: 12px; padding: 18px 18px 0; }
 .command-card__title span { display: grid; place-items: center; flex: 0 0 30px; width: 30px; height: 30px; border-radius: 10px; background: var(--green-soft); color: #032016; font-family: "Geist Mono", monospace; font-weight: 800; }
 .command-card__title h3 { margin: 0; }
-pre { margin: 16px 0 0; padding: 18px; overflow-x: auto; border-top: 1px solid var(--border); background: rgba(0, 0, 0, 0.28); color: #dff8ff; font-size: 0.84rem; line-height: 1.65; }
+pre { margin: 16px 0 0; padding: 18px; overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; border-top: 1px solid var(--border); background: rgba(0, 0, 0, 0.28); color: #dff8ff; font-size: 0.84rem; line-height: 1.65; }
 .truth-box { margin-top: 18px; border: 1px solid rgba(251, 191, 36, 0.28); background: rgba(251, 191, 36, 0.075); border-radius: 22px; padding: 22px; }
 .truth-box strong { color: #fde68a; }
 .truth-box p { margin: 8px 0 0; }
