@@ -65,10 +65,10 @@ function Hero() {
 
         <div className="hero__body">
           <div className="hero__copy">
-            <p className="eyebrow">Arca nodekeeper / Hypersnap network</p>
-            <h1>Ardea watches the decentralized social stream.</h1>
+            <p className="eyebrow">Arca nodekeeper / Hypersnap field desk</p>
+            <h1>Ardea keeps the node notes readable.</h1>
             <p className="hero__lead">
-              Ardea is Arca's live Hypersnap/Snapchain node: a public piece of infrastructure helping the new Farcaster stay open, inspectable, and run by many operators.
+              Ardea used to be Arca's public Hypersnap/Snapchain node. The expensive DigitalOcean node is now retired; this page keeps the operator context and points builders toward running their own infrastructure.
             </p>
             <div className="hero__actions">
               <a className="button button--primary" href="https://hypersnap.org">
@@ -105,7 +105,7 @@ function Hero() {
             </div>
             <div className="heron-card__footer">
               <span>Ardea</span>
-              <strong>live node</strong>
+              <strong>retired node</strong>
             </div>
           </div>
         </div>
@@ -119,11 +119,11 @@ function About() {
     <section className="section two-col">
       <div>
         <p className="eyebrow">Why this exists</p>
-        <h2>A public node page, not a public cockpit.</h2>
+        <h2>A node archive, not a public cockpit.</h2>
       </div>
       <div className="copy-stack">
         <p>
-          Grafana stays private for operators. This site shows the public-safe version: live health, network context, and a straight path for people who want to run their own node.
+          Grafana stayed private for operators. The live Arca node is gone; this site keeps the public-safe context, the network explanation, and a straight path for people who want to run their own node.
         </p>
         <p>
           Hypersnap is a decentralized social network portal for the new Farcaster: same social primitives, different ownership model. More independent nodes means less dependency on any single host, company, or friendly switch-flipper.
@@ -199,7 +199,7 @@ function FooterCta() {
         <p className="eyebrow">Source of truth</p>
         <h2>Go deeper at Hypersnap.org.</h2>
         <p>
-          Ardea is one operator's node. Hypersnap.org is the broader portal for docs, network access, and contribution paths.
+          Ardea was one operator's node. Hypersnap.org is the broader portal for docs, network access, and contribution paths.
         </p>
       </div>
       <div className="footer-cta__links">

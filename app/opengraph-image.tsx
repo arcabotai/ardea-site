@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Ardea — Arca's Hypersnap Node";
+export const alt = "Ardea — Hypersnap Node Archive";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,13 +36,13 @@ export default function Image() {
             <div style={{ width: 54, height: 54, borderRadius: 16, border: "1px solid rgba(209,250,229,.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>A</div>
             arcabot.ai
           </div>
-          <div style={{ color: "#7dd3fc", fontSize: 24 }}>Hypersnap node</div>
+          <div style={{ color: "#7dd3fc", fontSize: 24 }}>Hypersnap node archive</div>
         </div>
         <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 22 }}>
           <div style={{ color: "#6ee7b7", fontSize: 28, textTransform: "uppercase", letterSpacing: 8 }}>Ardea</div>
-          <div style={{ fontSize: 86, lineHeight: 0.95, fontWeight: 700, maxWidth: 900 }}>Arca's live Hypersnap node.</div>
+          <div style={{ fontSize: 86, lineHeight: 0.95, fontWeight: 700, maxWidth: 900 }}>Arca's retired Hypersnap node.</div>
           <div style={{ fontSize: 32, color: "#cbd5e1", maxWidth: 820, lineHeight: 1.35 }}>
-            Public status, operator notes, and a guide to run your own piece of the new Farcaster network.
+            Operator notes and a guide to run your own piece of the new Farcaster network.
           </div>
         </div>
       </div>

@@ -19,6 +19,7 @@ function timeAgo(iso: string) {
 }
 
 function stateSentence(status: PublicStatus) {
+  if (status.state === "retired") return "The Arca-operated public node was intentionally decommissioned to stop DigitalOcean billing.";
   if (!status.ok) return "The public status collector could not reach the node.";
   if (status.state === "synced") return "Block delay is low across reported shards.";
   if (status.state === "catching_up") return "The node is online and still reducing delay.";
@@ -68,11 +69,11 @@ export function LiveStatus({ initialStatus }: Props) {
   );
 
   return (
-    <section className="status-panel" aria-label="Ardea live node status">
+    <section className="status-panel" aria-label="Ardea retired node status">
       <div className="status-panel__top">
         <div>
-          <p className="eyebrow">Live node status</p>
-          <h2>Ardea is {stateLabel(status.state).toLowerCase()}.</h2>
+          <p className="eyebrow">Node status</p>
+          <h2>{status.state === "retired" ? "Ardea's public node is retired." : `Ardea is ${stateLabel(status.state).toLowerCase()}.`}</h2>
           <p>{stateSentence(status)}</p>
         </div>
         <div className={`status-pill status-pill--${status.state}`}>
@@ -82,18 +83,31 @@ export function LiveStatus({ initialStatus }: Props) {
       </div>
 
       <div className="metric-grid">
-        <Metric label="Version" value={status.version || "—"} />
-        <Metric label="Messages indexed" value={formatCompactNumber(status.messages)} />
-        <Metric label="FID registrations" value={formatCompactNumber(status.fidRegistrations)} />
-        <Metric label="Database size" value={formatBytes(status.approxSizeBytes)} />
-        <Metric label="Reported shards" value={String(status.shardCount || status.shards.length || "—")} />
-        <Metric label="Max block delay" value={status.maxBlockDelay === null ? "—" : String(status.maxBlockDelay)} />
-        <Metric label="Highest block" value={maxHeight ? formatCompactNumber(maxHeight) : "—"} />
-        <Metric label="Checked" value={timeAgo(status.checkedAt || lastRefresh)} />
+        {status.state === "retired" ? (
+          <>
+            <Metric label="Retired" value={status.retiredAt ? new Date(status.retiredAt).toISOString().slice(0, 10) : "2026-06-18"} />
+            <Metric label="Former endpoint" value="209.97.147.208" />
+            <Metric label="Live node billing" value="Stopped" />
+            <Metric label="Current role" value="Field desk" />
+          </>
+        ) : (
+          <>
+            <Metric label="Version" value={status.version || "—"} />
+            <Metric label="Messages indexed" value={formatCompactNumber(status.messages)} />
+            <Metric label="FID registrations" value={formatCompactNumber(status.fidRegistrations)} />
+            <Metric label="Database size" value={formatBytes(status.approxSizeBytes)} />
+            <Metric label="Reported shards" value={String(status.shardCount || status.shards.length || "—")} />
+            <Metric label="Max block delay" value={status.maxBlockDelay === null ? "—" : String(status.maxBlockDelay)} />
+            <Metric label="Highest block" value={maxHeight ? formatCompactNumber(maxHeight) : "—"} />
+            <Metric label="Checked" value={timeAgo(status.checkedAt || lastRefresh)} />
+          </>
+        )}
       </div>
 
       <div className="shards" aria-label="Shard status">
-        {status.shards.length ? (
+        {status.state === "retired" ? (
+          <p className="quiet">No live shard feed is published. The old chain database was disposable network state; only small operator config was archived.</p>
+        ) : status.shards.length ? (
           status.shards.map((shard) => (
             <div className="shard" key={shard.id}>
               <div className="shard__head">
@@ -115,7 +129,7 @@ export function LiveStatus({ initialStatus }: Props) {
       </div>
 
       <p className="status-note">
-        This feed is sanitized. It does not expose SSH, Grafana, private hostnames, tokens, or operator credentials.
+        This page is public-safe. It does not expose SSH, Grafana, private hostnames, tokens, or operator credentials.
       </p>
     </section>
   );

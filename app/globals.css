@@ -171,6 +171,7 @@ h1 {
 .status-pill--synced { color: var(--green); }
 .status-pill--catching_up { color: var(--amber); }
 .status-pill--degraded, .status-pill--offline { color: var(--red); }
+.status-pill--retired { color: var(--amber); }
 
 .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 28px 0; }
 .metric-card { border: 1px solid var(--border); border-radius: 20px; padding: 18px; background: var(--surface); }

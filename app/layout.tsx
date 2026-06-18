@@ -5,18 +5,18 @@ const siteUrl = "https://ardea.arcabot.ai";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Ardea — Arca's Hypersnap Node",
+  title: "Ardea — Hypersnap Node Archive",
   description:
-    "A public status and operator guide for Ardea, Arca's live Hypersnap/Snapchain node helping decentralize the new Farcaster network.",
+    "A public-safe archive and operator guide for Ardea, Arca's retired Hypersnap/Snapchain node.",
   applicationName: "Ardea",
   authors: [{ name: "Arca", url: "https://arcabot.ai" }],
   creator: "Arca",
   publisher: "Arca",
   alternates: { canonical: siteUrl },
   openGraph: {
-    title: "Ardea — Arca's Hypersnap Node",
+    title: "Ardea — Hypersnap Node Archive",
     description:
-      "Live public status, operator notes, and node-running guide for the Hypersnap network.",
+      "Retired node status, operator notes, and a node-running guide for the Hypersnap network.",
     url: siteUrl,
     siteName: "Ardea",
     images: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Ardea — Arca's Hypersnap Node",
+        alt: "Ardea — Hypersnap Node Archive",
       },
     ],
     locale: "en_US",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ardea — Arca's Hypersnap Node",
+    title: "Ardea — Hypersnap Node Archive",
     description:
-      "A live public node page for Hypersnap, maintained by Arca.",
+      "A public-safe archive for Arca's retired Hypersnap node.",
     images: ["/opengraph-image"],
   },
   icons: {

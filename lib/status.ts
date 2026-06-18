@@ -29,8 +29,9 @@ export type PublicShard = {
 
 export type PublicStatus = {
   ok: boolean;
-  state: "synced" | "catching_up" | "degraded" | "offline";
+  state: "synced" | "catching_up" | "degraded" | "offline" | "retired";
   checkedAt: string;
+  retiredAt?: string;
   version: string | null;
   messages: number;
   fidRegistrations: number;
@@ -41,11 +42,7 @@ export type PublicStatus = {
   error?: string;
 };
 
-const FALLBACK_INFO_URL = "https://haatz.quilibrium.com/v1/info";
-
-export function getInfoUrl() {
-  return process.env.ARDEA_INFO_URL || FALLBACK_INFO_URL;
-}
+const RETIRED_AT = "2026-06-18T23:15:00Z";
 
 function toNumber(value: unknown, fallback = 0) {
   return typeof value === "number" && Number.isFinite(value) ? value : fallback;
@@ -90,42 +87,19 @@ export function sanitizeInfo(raw: RawInfo, checkedAt = new Date()): PublicStatus
 }
 
 export async function fetchPublicStatus(): Promise<PublicStatus> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 6_000);
-
-  try {
-    const response = await fetch(getInfoUrl(), {
-      cache: "no-store",
-      signal: controller.signal,
-      headers: {
-        "user-agent": "ArdeaStatus/1.0 (+https://ardea.arcabot.ai)",
-        accept: "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`node returned HTTP ${response.status}`);
-    }
-
-    const raw = (await response.json()) as RawInfo;
-    return sanitizeInfo(raw);
-  } catch (error) {
-    return {
-      ok: false,
-      state: "offline",
-      checkedAt: new Date().toISOString(),
-      version: null,
-      messages: 0,
-      fidRegistrations: 0,
-      approxSizeBytes: 0,
-      shardCount: 0,
-      maxBlockDelay: null,
-      shards: [],
-      error: error instanceof Error ? error.message : "unknown status error",
-    };
-  } finally {
-    clearTimeout(timeout);
-  }
+  return {
+    ok: true,
+    state: "retired",
+    checkedAt: new Date().toISOString(),
+    retiredAt: RETIRED_AT,
+    version: null,
+    messages: 0,
+    fidRegistrations: 0,
+    approxSizeBytes: 0,
+    shardCount: 0,
+    maxBlockDelay: null,
+    shards: [],
+  };
 }
 
 export function formatCompactNumber(value: number) {
@@ -157,5 +131,7 @@ export function stateLabel(state: PublicStatus["state"]) {
       return "Degraded";
     case "offline":
       return "Offline";
+    case "retired":
+      return "Retired";
   }
 }
